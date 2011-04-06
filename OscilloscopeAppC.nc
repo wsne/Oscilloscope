@@ -20,7 +20,7 @@ configuration OscilloscopeAppC { }
 implementation
 {
   components OscilloscopeC, MainC, ActiveMessageC, LedsC,
-    new TimerMilliC(), new DemoSensorC() as Sensor, 
+    new TimerMilliC(), new SensirionSht11C() as Sensor, 
     new AMSenderC(AM_OSCILLOSCOPE), new AMReceiverC(AM_OSCILLOSCOPE);
 
   OscilloscopeC.Boot -> MainC;
@@ -28,7 +28,7 @@ implementation
   OscilloscopeC.AMSend -> AMSenderC;
   OscilloscopeC.Receive -> AMReceiverC;
   OscilloscopeC.Timer -> TimerMilliC;
-  OscilloscopeC.Read -> Sensor;
+  OscilloscopeC.Read -> Sensor.Temperature;
   OscilloscopeC.Leds -> LedsC;
 
   
